@@ -3,7 +3,7 @@ data:
   patch_size: 128
   num_classes: 3
   val_scroll_ids: ["26002"]
-  num_workers: 4
+  num_workers: 2
   pin_memory: true
   patches_per_volume: 2
 

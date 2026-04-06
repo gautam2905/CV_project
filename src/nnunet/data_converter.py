@@ -41,9 +41,12 @@ def convert_to_nnunet_format():
             img_dst.symlink_to(img_src)
             lbl_dst.symlink_to(lbl_src)
 
-            spacing_json = images_dir / f"{sample_id}_0000.json"
-            with open(spacing_json, "w") as sf:
-                json.dump({"spacing": [1.0, 1.0, 1.0]}, sf)
+            for json_name in [
+                images_dir / f"{sample_id}_0000.json",
+                labels_dir / f"{sample_id}.json",
+            ]:
+                with open(json_name, "w") as sf:
+                    json.dump({"spacing": [1.0, 1.0, 1.0]}, sf)
 
             count += 1
 
@@ -56,7 +59,7 @@ def convert_to_nnunet_format():
         },
         "numTraining": count,
         "file_ending": ".tif",
-        "overwrite_image_reader_writer": "TiffIO",
+        "overwrite_image_reader_writer": "Tiff3DIO",
     }
 
     with open(ds_dir / "dataset.json", "w") as f:

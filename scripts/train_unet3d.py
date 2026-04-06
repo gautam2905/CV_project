@@ -7,11 +7,13 @@ Usage:
     torchrun --nproc_per_node=2 scripts/train_unet3d.py --config configs/unet3d_config.yaml  # quick test
 """
 import argparse
+import multiprocessing
 import os
 import sys
 
 import torch
 import torch.distributed as dist
+import torch.multiprocessing as mp
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -39,4 +41,5 @@ def main():
 
 
 if __name__ == "__main__":
+    mp.set_start_method("spawn", force=True)
     main()
