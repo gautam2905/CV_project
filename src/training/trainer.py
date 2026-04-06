@@ -6,7 +6,7 @@ import numpy as np
 import torch
 import torch.distributed as dist
 import torch.nn as nn
-from torch.cuda.amp import GradScaler
+from torch.amp import GradScaler
 from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.utils.data import DataLoader, DistributedSampler
 from tqdm import tqdm
@@ -55,7 +55,8 @@ class Trainer:
             deep_supervision=mcfg["deep_supervision"],
         ).to(self.device)
 
-        self.model = DDP(self.model, device_ids=[self.local_rank])
+        self.model = DDP(self.model, device_ids=[self.local_rank],
+                         find_unused_parameters=True)
 
         if self.is_main:
             print(f"Model parameters: {count_parameters(self.model):,}")
@@ -116,7 +117,7 @@ class Trainer:
 
     def _setup_amp(self):
         self.use_amp = self.cfg["training"]["amp"]
-        self.scaler = GradScaler(enabled=self.use_amp)
+        self.scaler = GradScaler("cuda", enabled=self.use_amp)
 
     def _setup_wandb(self):
         self.wandb_run = None
