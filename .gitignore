@@ -1,0 +1,41 @@
+# Data
+data/
+nnUNet_data/
+*.tif
+*.zip
+
+# Project-specific excludes
+CV_ProjectProposal_Blind.pdf
+nnunet-4-model-7-5-2-1-final-submit-so-long.ipynb
+deprecated_train_images/
+deprecated_train_labels/
+
+# Checkpoints
+checkpoints/
+*.pth
+
+# Logs
+logs/
+wandb/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Notebooks outputs
+.ipynb_checkpoints/
