@@ -9,7 +9,7 @@
 
 set -e
 
-CONDA_BIN="/raid/home/vikram_govt/anaconda3/envs/dikshant/bin"
+CONDA_BIN="/raid/home/vikram_govt/anaconda3/envs/vesuvius/bin"
 NNUNET_TRAIN="${CONDA_BIN}/nnUNetv2_train"
 
 # nnU-Net environment variables
