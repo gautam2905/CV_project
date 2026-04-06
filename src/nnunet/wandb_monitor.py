@@ -9,6 +9,7 @@ Usage:
         --name LPlans_4000ep
 """
 import argparse
+import os
 import re
 import time
 from pathlib import Path
@@ -44,6 +45,10 @@ def parse_training_log(log_path):
 
 def monitor(log_dir, project, name, poll_interval=30):
     import wandb
+    os.environ.setdefault(
+        "WANDB_API_KEY",
+        "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",
+    )
 
     log_dir = Path(log_dir)
     run = wandb.init(project=project, name=name)

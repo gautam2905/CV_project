@@ -123,6 +123,10 @@ class Trainer:
         if self.is_main:
             try:
                 import wandb
+                os.environ.setdefault(
+                    "WANDB_API_KEY",
+                    "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",
+                )
                 self.wandb_run = wandb.init(
                     project=self.cfg["logging"]["wandb_project"],
                     config=self.cfg,
